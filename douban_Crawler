@@ -1,0 +1,16 @@
+"""
+爬取豆瓣读书首页的所有出版商
+"""
+
+import urllib.request
+import re
+
+
+url = "http://book.douban.com/"
+pattern = '<span class="publisher">(.+?)</span>'
+data = urllib.request.urlopen(url).read().decode("utf-8")
+pub_list= re.compile(pattern).findall(data)
+for i in range(len(pub_list)):
+  file = open("E:\douban.txt","wb")
+  file.write(pub_list[i])
+  file.close()
